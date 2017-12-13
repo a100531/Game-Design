@@ -7,3 +7,5 @@ controller can be used to recreate a spawn point where you can respawnn characte
 use camera follow script to create a script for the the respawn point to follow the player
 this will allow the player to change characters where ever he is without having to start from an old position but
 this way respawn into the current position
+jump tutorial adding gravity
+https://www.youtube.com/watch?v=miMCu5796KM
