@@ -10,6 +10,7 @@ public class playerInput : MonoBehaviour {
 	public float jumpSpeed;
 	public float moveSpeed;
 	private float fallSpeed;
+	public GameObject platform1;
 
 	public bool jumpAir;
 
@@ -18,6 +19,7 @@ public class playerInput : MonoBehaviour {
 		characterController = GetComponent<CharacterController>();
 		gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		jumpAir = true;
+		platform1.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -66,6 +68,7 @@ public class playerInput : MonoBehaviour {
 	{
 		if(other.tag == "box"){
 			Debug.Log("interact");
+			platform1.SetActive(true);
 		}
 		if(other.tag == "slope"){
 			Debug.Log("slope");
