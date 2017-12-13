@@ -9,3 +9,6 @@ this will allow the player to change characters where ever he is without having 
 this way respawn into the current position
 jump tutorial adding gravity
 https://www.youtube.com/watch?v=miMCu5796KM
+
+check this code snippet to allow player to push stuff possibility
+https://docs.unity3d.com/ScriptReference/CharacterController.OnControllerColliderHit.html
