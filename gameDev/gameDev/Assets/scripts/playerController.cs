@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour {
 	public float movementSpeed = 10;
 	// Use this for initialization
 	void Start () {
+       
         gameObject.GetComponent<Renderer>().material.color = Color.blue;
     }
 	
@@ -28,7 +29,7 @@ public class playerController : MonoBehaviour {
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-
-
+    
+        
     }
 }
