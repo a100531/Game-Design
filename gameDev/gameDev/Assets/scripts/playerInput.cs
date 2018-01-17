@@ -11,6 +11,8 @@ public class playerInput : MonoBehaviour {
 	public float jumpSpeed;
 	public float moveSpeed;
 	private float fallSpeed;
+	public GameObject air;
+    public GameObject earth;
 	public GameObject platform1;
 	public GameObject platform2;
 	public GameObject platform3;
@@ -29,7 +31,7 @@ public class playerInput : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController>();
-		gameObject.GetComponent<Renderer>().material.color = Color.blue;
+		//gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		jumpAir = true;
 		platform1.SetActive(false);
 		platform2.SetActive(false);
@@ -38,6 +40,8 @@ public class playerInput : MonoBehaviour {
 		platform7.SetActive(false);
 		platform8.SetActive(false);
 		switch8.SetActive(false);
+		air.SetActive(true);
+        earth.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -45,14 +49,18 @@ public class playerInput : MonoBehaviour {
 		
 
 		if (Input.GetKey(KeyCode.Alpha1))
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        {	
+			air.SetActive(true);
+            earth.SetActive(false);
+            //gameObject.GetComponent<Renderer>().material.color = Color.blue;
 			jumpAir = true;
 			isEarth = false;
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+			air.SetActive(false);
+            earth.SetActive(true);
+            //gameObject.GetComponent<Renderer>().material.color = Color.green;
 			jumpAir = false;
 			isEarth = true;
         }
