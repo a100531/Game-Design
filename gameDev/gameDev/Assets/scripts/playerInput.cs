@@ -11,17 +11,11 @@ public class playerInput : MonoBehaviour {
 	public float jumpSpeed;
 	public float moveSpeed;
 	private float fallSpeed;
-	public GameObject platform1;
-	public GameObject platform2;
-	public GameObject platform3;
-	public GameObject platform4;
-	public GameObject platform5;
-	public GameObject platform6;
-	public GameObject platform7;
-	public GameObject platform8;
-	public GameObject platform9;
-	public GameObject switch5;
-	public GameObject switch8;
+	public GameObject air;
+    public GameObject earth;
+
+	public GameObject rose1;
+	
 
 	public bool jumpAir;
 	public bool isEarth = false;
@@ -29,15 +23,11 @@ public class playerInput : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController>();
-		gameObject.GetComponent<Renderer>().material.color = Color.blue;
+		//gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		jumpAir = true;
-		platform1.SetActive(false);
-		platform2.SetActive(false);
-		platform3.SetActive(false);
-		platform4.SetActive(false);
-		platform7.SetActive(false);
-		platform8.SetActive(false);
-		switch8.SetActive(false);
+		rose1.SetActive(false);
+		air.SetActive(true);
+        earth.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -45,14 +35,18 @@ public class playerInput : MonoBehaviour {
 		
 
 		if (Input.GetKey(KeyCode.Alpha1))
-        {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        {	
+			air.SetActive(true);
+            earth.SetActive(false);
+            //gameObject.GetComponent<Renderer>().material.color = Color.blue;
 			jumpAir = true;
 			isEarth = false;
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+			air.SetActive(false);
+            earth.SetActive(true);
+            //gameObject.GetComponent<Renderer>().material.color = Color.green;
 			jumpAir = false;
 			isEarth = true;
         }
@@ -86,59 +80,11 @@ public class playerInput : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "box" && isEarth){
+		if(other.tag == "flowerTrigger" && isEarth){
 			Debug.Log("interact");
-			platform1.SetActive(true);
+			rose1.SetActive(true);
 		}
-		if(other.tag == "box1" && isEarth){
-			Debug.Log("interact");
-			platform2.SetActive(true);
-			
-		}
-		if(other.tag == "box2" && isEarth){
-			Debug.Log("interact");
-			platform3.SetActive(true);
-			
-		}
-		if(other.tag == "box3" && isEarth){
-			Debug.Log("interact");
-			platform4.SetActive(true);
-			platform9.SetActive(false);
-			
-			
-		}
-		if(other.tag == "box4" && isEarth){
-			Debug.Log("interact");
-			platform5.SetActive(false);
-			
-		}
-		if(other.tag == "box5" && isEarth){
-			Debug.Log("interact");
-			platform6.SetActive(false);
-			platform7.SetActive(true);
-			platform8.SetActive(true);
-			switch8.SetActive(false);
-	
-		}
-		if(other.tag == "box6" && isEarth){
-			Debug.Log("interact");
-			platform6.SetActive(true);
-			platform7.SetActive(false);
-	
-		}
-		if(other.tag == "box7" && isEarth){
-			Debug.Log("interact");
-			platform6.SetActive(false);
-			switch8.SetActive(true);
-	
-		}
-		if(other.tag == "box8" && isEarth){
-			Debug.Log("interact");
-			platform8.SetActive(false);
-			switch5.SetActive(false);
-			
-	
-		}
+		// use this when slopes start being used
 		if(other.tag == "slope"){
 			Debug.Log("slope");
 			isGrounded = true;
