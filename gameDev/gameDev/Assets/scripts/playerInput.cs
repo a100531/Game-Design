@@ -15,6 +15,8 @@ public class playerInput : MonoBehaviour {
     public GameObject earth;
 
 	public GameObject rose1;
+	private float lastCheckpointX;
+	private float lastCheckpointY;
 	
 
 	public bool jumpAir;
@@ -89,13 +91,29 @@ public class playerInput : MonoBehaviour {
 			Debug.Log("slope");
 			isGrounded = true;
 		}
+		if(other.tag == "checkpoint"){
+			
+			lastCheckpointX = gameObject.transform.position.x;
+			Debug.Log(lastCheckpointX);
+			lastCheckpointY = gameObject.transform.position.y;
+			Debug.Log(lastCheckpointY);
+		}
+		if(other.tag == "deathwall"){
+			Debug.Log("spawned");
+			if(lastCheckpointX != 0 && lastCheckpointY != 0){
+				transform.position = new Vector3(lastCheckpointX, lastCheckpointY, 0);
+			}
+			else{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
+		}
 		
 	}
-	void OnTriggerStay(Collider other)
-	{
-		if(other.tag == "deathwall"){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
-	}
+	//void OnTriggerStay(Collider other)
+	//{
+	//	if(other.tag == "deathwall"){
+	//		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	//	}
+	//}
 
 }
