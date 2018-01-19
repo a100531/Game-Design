@@ -15,12 +15,17 @@ public class playerInput : MonoBehaviour {
     public GameObject earth;
 
 	public GameObject rose1;
+	public GameObject platform1;
 	private float lastCheckpointX;
 	private float lastCheckpointY;
 	
 
 	public bool jumpAir;
 	public bool isEarth = false;
+	//public bool left1 = false;
+	//public bool right1 = false;
+	//public bool up1 = false;
+    //public bool down1 = false;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +33,7 @@ public class playerInput : MonoBehaviour {
 		//gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		jumpAir = true;
 		rose1.SetActive(false);
+		platform1.SetActive(false);
 		air.SetActive(true);
         earth.SetActive(false);
 	}
@@ -82,9 +88,14 @@ public class playerInput : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "flowerTrigger" && isEarth){
+		if(other.tag == "flowerTrigger1" && isEarth){
 			Debug.Log("interact");
 			rose1.SetActive(true);
+		}
+		if(other.tag == "platformTrigger1" && isEarth){
+			//left1 = true;
+			platform1.SetActive(true);
+			//Debug.Log(left1);
 		}
 		// use this when slopes start being used
 		if(other.tag == "slope"){
