@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - slope
-  - deathwall
   - flowerTrigger
+  - checkpoint
+  - deathwall
+  - flowerTrigger1
+  - platformTrigger1
   layers:
   - Default
   - TransparentFX

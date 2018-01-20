@@ -20,7 +20,7 @@ public class movingPlatform : MonoBehaviour {
 
 		
 		
-		if(left){
+		if(right){
 			gameObject.transform.Translate(speed*Time.deltaTime,0,0);
 			if(transform.position.x >= initialPosition + move){
 				speed = 0;
@@ -28,7 +28,7 @@ public class movingPlatform : MonoBehaviour {
 
 		}
 			
-	 	else if(right){
+	 	else if(left){
 			gameObject.transform.Translate(-speed*Time.deltaTime,0,0);
 			if(transform.position.x <= initialPosition - move){
 				speed = 0;

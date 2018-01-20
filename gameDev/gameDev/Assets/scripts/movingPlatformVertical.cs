@@ -17,6 +17,7 @@ public class movingPlatformVertical : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if(up){
 			gameObject.transform.Translate(0,speed*Time.deltaTime,0);
 			if(transform.position.y >= initialPosition + move){
@@ -38,6 +39,7 @@ public class movingPlatformVertical : MonoBehaviour {
 		if(other.tag == "Player"){
 			Debug.Log("interact");
 			down = true;
+
 		}
 		
 	}
