@@ -9,6 +9,7 @@ TagManager:
   - deathwall
   - flowerTrigger1
   - platformTrigger1
+  - Spawn
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - collisions
   - 
   - 
   - 
