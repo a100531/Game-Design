@@ -6,8 +6,8 @@ public class movingPlatformVertical : MonoBehaviour {
 	public float move = 4;
 	public float speed = 10;
 	private float initialPosition ;
-	public bool up = false;
-	public bool down = false;
+	public static bool up = false;
+	public static bool down = false;
 	// Use this for initialization
 	void Start () {
 		//takes the initial position of the object on y axis

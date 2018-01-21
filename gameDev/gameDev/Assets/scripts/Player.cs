@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerPhysics))]
 public class Player : MonoBehaviour {
@@ -9,23 +10,28 @@ public class Player : MonoBehaviour {
 	public float gravity = 20;
 	public float acceleration = 30;
 	public GameObject player;
-	//float jumpTime, jumpDelay = 0.05f;
-	//bool jumped;
+	
+	public GameObject platform1;
 	private bool jumping;
 
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
+	private float lastCheckpointX;
+	private float lastCheckpointY;
 
 	private PlayerPhysics playerPhysics;
 	private GameManager manager;
+	public static bool isEarth = false;
 	// Use this for initialization
 	void Start () {
 
 		playerPhysics = GetComponent<PlayerPhysics>();
 		//anim = GetComponent<Animator> ();
+		
+		platform1.SetActive(false);
+		gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		manager = Camera.main.GetComponent<GameManager>();
-		//transform.eulerAngles = Vector3.up * 180;
 
 
 	}
@@ -40,12 +46,26 @@ public class Player : MonoBehaviour {
 			currentSpeed = 0;
 		}
 		
+		if (Input.GetKey(KeyCode.Alpha1))
+        {	
+			//air.SetActive(true);
+            //earth.SetActive(false);
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+			isEarth = false;
+        }
+		 if (Input.GetKey(KeyCode.Alpha2))
+        {
+			//air.SetActive(false);
+            //earth.SetActive(true);
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+			isEarth = true;
+        }
 
 		//anim.SetFloat ("speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
 		
-		if (playerPhysics.grounded) {
+		if (playerPhysics.grounded && !isEarth) {
 			amountToMove.y = 0;
 
 			if (jumping) {
@@ -58,22 +78,6 @@ public class Player : MonoBehaviour {
 				jumping = true;
 				//anim.SetBool("Jumping",true);
 			}
-			// Jump
-			//if (Input.GetButtonDown("Jump")) {
-			//	amountToMove.y = jumpHeight;
-			//	jumpTime = jumpDelay;
-			//	anim.SetTrigger("Jump");
-			//	jumped = true;
-				
-				
-			//}
-			//jumpTime-= Time.deltaTime;
-			//if(jumpTime <= 0 && playerPhysics.grounded && jumped)
-			//{
-			//	anim.SetTrigger ("Land");
-			//	jumped = false;
-				
-			//}
 		}
 
 		
@@ -87,13 +91,6 @@ public class Player : MonoBehaviour {
 		{
 			transform.eulerAngles = (moveDir > 0) ? Vector3.up * 180 : Vector3.zero;
 		}
-
-		//if (Input.GetKeyDown (KeyCode.Q) && canShoot == true) 
-		//{
-		//		Throw (Axe);
-		//		
-		//}
-		//if(ammoAxes <= 0){canShoot = false;}
 		
 	}
 	// Increase n towards target by speed
@@ -108,20 +105,31 @@ public class Player : MonoBehaviour {
 		}
 	}
 	 	
-		//void Throw(GameObject Axe)
-
-		//{
-		//	Instantiate (Axe, gameObject.transform.position, gameObject.transform.rotation);	
-		//	ammoAxes--;
-		//}
 		
 
 		//hit detections
 		void OnTriggerEnter(Collider c) {
-		if (c.tag == "Checkpoint" )
-		{
-			manager.SetCheckpoint(c.transform.position);
-			Debug.Log("checkpoint");
+		if(c.tag == "platformTrigger1" && isEarth){
+			//left1 = true;
+			platform1.SetActive(true);
+			//Debug.Log(left1);
+		}
+		if(c.tag == "checkpoint"){
+			
+			Debug.Log("Checkpoint Bitch");
+			lastCheckpointX = gameObject.transform.position.x;
+			Debug.Log(lastCheckpointX);
+			lastCheckpointY = gameObject.transform.position.y;
+			Debug.Log(lastCheckpointY);
+		}
+		if(c.tag == "deathwall"){
+			Debug.Log("spawned");
+			if(lastCheckpointX != 0 && lastCheckpointY != 0){
+				transform.position = new Vector3(lastCheckpointX, lastCheckpointY, 0);
+			}
+			else{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
 		}
 	}
 

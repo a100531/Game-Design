@@ -9,32 +9,33 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 		cam = GetComponent<GameCamera> ();
-		if(GameObject.FindGameObjectWithTag("Spawn"))
-		{
-			checkpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-		}
+		cam.SetTarget (GameObject.FindGameObjectWithTag("Player").transform);
+		//if(GameObject.FindGameObjectWithTag("Spawn"))
+		//{
+		//	checkpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+		//}
 
-		SpawnPlayer (checkpoint);
-	}
+		//SpawnPlayer (checkpoint);
+	//}
 	
-	private void SpawnPlayer(Vector3 spawnPos) {
-		currentPlayer = Instantiate(player,spawnPos,Quaternion.identity) as GameObject;
-		cam.SetTarget (currentPlayer.transform);
+	//private void SpawnPlayer(Vector3 spawnPos) {
+		//currentPlayer = Instantiate(player,spawnPos,Quaternion.identity) as GameObject;
+		//cam.SetTarget (GameObject.FindGameObjectWithTag("Player").transform);
 	}
 
-	private void Update () {
-			if(!currentPlayer)
-			{
-				if (Input.GetKey(KeyCode.R))
-				{
-				SpawnPlayer (checkpoint);
-				}
-			}
-	}
+	//private void Update () {
+	//		if(!currentPlayer)
+	//		{
+	//			if (Input.GetKey(KeyCode.R))
+	//			{
+	//			SpawnPlayer (checkpoint);
+	//			}
+	//		}
+	//}
 
-	public void SetCheckpoint(Vector3 cp) {
-		checkpoint = cp;
-	}
+	//public void SetCheckpoint(Vector3 cp) {
+	//	checkpoint = cp;
+	//}
 
 	public void EndLevel () {
 	
