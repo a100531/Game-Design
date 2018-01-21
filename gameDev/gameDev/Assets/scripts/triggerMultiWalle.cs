@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class triggerMultiWalle : MonoBehaviour {
-public float move = 4;
+	public float move = 4;
 	public float speed = 10;
 	private float initialPosition ;
 
