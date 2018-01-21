@@ -10,6 +10,7 @@ TagManager:
   - flowerTrigger1
   - platformTrigger1
   - Spawn
+  - FuckYouStone
   layers:
   - Default
   - TransparentFX
