@@ -6,11 +6,13 @@ public class StoneMove : MonoBehaviour {
 
 	public float move = 4;
 	public float speed = 10;
+	public float stoneSpeed = 30;
 	private float initialPositionL ;
 	
 	public bool right = false;
 	
 	public GameObject Stone;
+	public GameObject stoneSprite;
 	
 
 	
@@ -31,9 +33,11 @@ public class StoneMove : MonoBehaviour {
 		{
 			Stone.transform.Translate(speed*Time.deltaTime,0,0);
 			//Stone.transform.Rotate(0,0,speed*Time.deltaTime);
+			stoneSprite.transform.Rotate(0,0,-stoneSpeed*Time.deltaTime);
 			if(Stone.transform.position.x >= initialPositionL + move)
 			{
 				speed = 0;
+				stoneSpeed = 0;
 			}
 		}
 	}
@@ -42,7 +46,7 @@ public class StoneMove : MonoBehaviour {
 		{	
 			
 			right = true;
-
+			
 		}
 	}
 }
