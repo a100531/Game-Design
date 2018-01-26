@@ -109,11 +109,6 @@ public class Player : MonoBehaviour {
 
 		//hit detections
 		void OnTriggerEnter(Collider c) {
-		if(c.tag == "platformTrigger1" && isEarth){
-			//left1 = true;
-			platform1.SetActive(true);
-			//Debug.Log(left1);
-		}
 		if(c.tag == "checkpoint"){
 			
 			Debug.Log("Checkpoint Bitch");
